@@ -18,8 +18,8 @@
         <li>
             <h:form prependId="false">
                 <p:menuButton value="Layout" style="margin:10px 10px 0 0 " id="layout-menu">
-                    <p:menuitem value="Default" action="#{layoutMB.setDefaultLayout}" ajax="false" icon="fa fa-list-ul"/>
-                    <p:menuitem value="Horizontal menu"  action="#{layoutMB.setHorizontalLayout}" ajax="false" icon="fa fa-credit-card"/>
+                    <p:menuitem value="Left menu (default)" disabled="#{layoutMB.leftMenuTemplate}" onclick="toggleTemplate();return false" ajax="false" icon="fa fa-list-ul"/>
+                    <p:menuitem value="Top menu" disabled="#{not layoutMB.leftMenuTemplate}" onclick="toggleTemplate();return false" ajax="false" icon="fa fa-credit-card"/>
                 </p:menuButton>
             </h:form>
         </li>
@@ -46,12 +46,16 @@
                             <p:commandLink styleClass="btn btn-danger" value="Change password"/>
                         </div>
                         <div class="pull-right">
-                            <a id="logout" href="#{request.contextPath}/logout" title="Logoff">
-                             <i class="fa fa-sign-out fa-2x"></i></a>
+                            <p:commandLink id="logout" action="#{logoutMB.doLogout}" title="Logoff">
+                                <i class="fa fa-sign-out fa-2x"></i>
+                            </p:commandLink>
                         </div>
                     </h:form>
                 </li>
             </ul>
+        </li>
+        <li>
+            <a id="layout-setup" href="#" class="#{adminConfig.controlSidebar.showOnMobile ? '':'hidden-sm hidden-xs'}" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
         </li>
 
     </ul>
